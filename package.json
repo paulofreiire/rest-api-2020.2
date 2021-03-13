@@ -1,0 +1,16 @@
+{
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^5.21.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^5.5.1",
+    "sucrase": "^3.17.1"
+  }
+}
