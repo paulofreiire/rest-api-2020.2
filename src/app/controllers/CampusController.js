@@ -33,7 +33,7 @@ class CampusController {
         const campus = await Campus.create({ nome, cidade });
 
         const cursosXD = await Promise.all(cursos.map(async (curso) => {
-           return await Curso.create({
+            return await Curso.create({
                 nome: curso.nome,
                 turno: curso.turno,
                 campus_id: campus.id
@@ -72,15 +72,18 @@ class CampusController {
         }
 
         let campus = await Campus.findByPk(req.params.id)
-        campus = await campus.update(req.body)
-        return res.json(campus)
+        if (campus) {
+            campus = await campus.update(req.body)
+            return res.json(campus)
+        } else return res.status(404).json({ error: 'Não encontrado!' });
+
     }
 
     async delete(req, res) {
         let campus = await Campus.findByPk(req.params.id)
-        if (campus){
+        if (campus) {
             campus = await campus.destroy(req.body)
-            return res.json({message: `registro ${campus.id} deletado!`})
+            return res.json({ message: `registro ${campus.id} deletado!` })
         } else return res.status(404).json({ error: 'Não encontrado!' });
     }
 
@@ -96,7 +99,7 @@ class CampusController {
                 }
             ]
         })
-        if (campus){
+        if (campus) {
             return res.json(campus)
         } else return res.status(404).json({ error: 'Não encontrado!' });
     }
