@@ -64,7 +64,10 @@ class AlunoController {
             return res.status(400).json({ error: 'Faltando argumentos do aluno' });
         }
         let aluno = await Aluno.findByPk(req.params.id)
-        if (aluno) {
+        let curso = await Curso.findByPk(curso_id);
+        if (!curso) {
+            return res.status(400).json({ error: 'Curso não encontrado!' });
+        } else if (aluno) {
             aluno = await aluno.update({ nome, dateNascimento, curso_id })
             return res.json(aluno)
         } else return res.status(404).json({ error: 'Não encontrado!' });
