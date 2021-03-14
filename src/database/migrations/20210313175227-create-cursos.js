@@ -3,18 +3,19 @@ var DataTypes = require('sequelize/lib/data-types')
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('alunos', {
-      matricula: {
+    return queryInterface.createTable('cursos', {
+      id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true
       },
       nome: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      date_nascimento: {
-        type: DataTypes.DATE,
+      turno: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       created_at: DataTypes.DATE,
@@ -23,6 +24,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('alunos');
+    return queryInterface.dropTable('cursos');
   }
 };

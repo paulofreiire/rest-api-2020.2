@@ -6,9 +6,10 @@ class Aluno extends Model {
             {
                 matricula: {
                     type: Sequelize.INTEGER,
-                    primaryKey: true
+                    primaryKey: true,
                 },
-                nome: Sequelize.STRING
+                nome: Sequelize.STRING,
+                dateNascimento: Sequelize.DATE
             },
             {
                 sequelize,
