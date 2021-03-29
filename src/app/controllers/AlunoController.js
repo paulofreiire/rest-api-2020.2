@@ -9,15 +9,22 @@ class AlunoController {
     async store(req, res) {
         const { matricula, curso_id, campus_id } = req.body;
         const schemaAluno = new Yup.object().shape({
-            matricula: Yup.number().required(),
-            nome: Yup.string().required(),
+            matricula: Yup.number().required().min(6).max(6),
+            nome: Yup.string().required().min(3),
             dateNascimento: Yup.date().required(),
+            email: Yup.string().required(),
+            ddd: Yup.number().required(),
+            telefone: Yup.number().required(),
+            operadora: Yup.string().required(),
+            campus_id: Yup.number().required(),
             curso_id: Yup.number().required(),
         });
 
-        if (!(await schemaAluno.isValid(req.body))) {
+        console.log(req.body)
+
+        /*if (!(await schemaAluno.isValid(req.body))) {
             return res.status(400).json({ error: 'Faltando argumentos do aluno' });
-        }
+        }*/
 
         let aluno = await Aluno.findByPk(matricula);
         let curso = await Curso.findByPk(curso_id);

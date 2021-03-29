@@ -9,7 +9,12 @@ class Aluno extends Model {
                     primaryKey: true,
                 },
                 nome: Sequelize.STRING,
-                dateNascimento: Sequelize.DATE
+                email: Sequelize.STRING,
+                dateNascimento: Sequelize.DATE,
+                ddd: Sequelize.NUMBER,
+                telefone: Sequelize.NUMBER,
+                operadora: Sequelize.STRING,
+
             },
             {
                 sequelize,
@@ -26,7 +31,7 @@ class Aluno extends Model {
             as: 'curso',
         });
 
-        this.belongsTo(models.Curso, {
+        this.belongsTo(models.Campus, {
             foreignKey: 'campus_id',
             as: 'campus',
         });

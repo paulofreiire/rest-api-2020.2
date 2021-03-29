@@ -35,14 +35,14 @@ module.exports = {
       },
       campus_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'cursos', key: 'id' },
+        references: { model: 'campus', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false
       },
       curso_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'campus', key: 'id' },
+        references: { model: 'cursos', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false
