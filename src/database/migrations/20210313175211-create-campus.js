@@ -6,7 +6,6 @@ module.exports = {
     return queryInterface.createTable('campus', {
       id: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         primaryKey: true
       },
       nome: {

@@ -1,3 +1,3 @@
 import app from './app';
 
-app.listen(3000, () => console.log("xD"));
+app.listen(8080, () => console.log("xD"));

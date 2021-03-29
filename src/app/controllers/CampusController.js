@@ -5,7 +5,7 @@ import Curso from "../models/Curso";
 class CampusController {
 
     async store(req, res) {
-        const { nome, cidade, cursos } = req.body;
+        const { id, nome, cidade, cursos } = req.body;
         console.log(cursos)
 
         const schemaCampus = new Yup.object().shape({
@@ -30,7 +30,13 @@ class CampusController {
             return res.status(400).json({ error: 'Faltando argumentos do curso!' });
         }
 
-        const campus = await Campus.create({ nome, cidade });
+        let campus = await Campus.findByPk(id);
+        console.log(campus)
+        if (!campus){
+            campus = await Campus.create({ id, nome, cidade });
+        } else {
+            return res.status(400).json({ error: 'Campus já cadastrado!' });
+        }
 
         const cursosXD = await Promise.all(cursos.map(async (curso) => {
             return await Curso.create({

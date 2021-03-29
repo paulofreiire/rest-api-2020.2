@@ -25,6 +25,13 @@ class Aluno extends Model {
             foreignKey: 'curso_id',
             as: 'curso',
         });
+
+        this.belongsTo(models.Curso, {
+            foreignKey: 'campus_id',
+            as: 'campus',
+        });
     }
+
+    
 }
 export default Aluno;

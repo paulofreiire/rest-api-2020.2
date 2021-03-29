@@ -7,7 +7,6 @@ class Campus extends Model {
                 id: {
                     type: Sequelize.INTEGER,
                     primaryKey: true,
-                    autoIncrement: true,
                 },
                 nome: Sequelize.STRING,
                 cidade: Sequelize.STRING

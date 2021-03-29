@@ -1,14 +1,13 @@
 import * as Yup from 'yup';
-import querystring from 'querystring';
 import Aluno from "../models/Aluno";
 import Curso from "../models/Curso";
-import { Op } from "sequelize";
+import Campus from '../models/Campus';
 
 
 class AlunoController {
 
     async store(req, res) {
-        const { matricula, curso_id } = req.body;
+        const { matricula, curso_id, campus_id } = req.body;
         const schemaAluno = new Yup.object().shape({
             matricula: Yup.number().required(),
             nome: Yup.string().required(),
@@ -22,8 +21,11 @@ class AlunoController {
 
         let aluno = await Aluno.findByPk(matricula);
         let curso = await Curso.findByPk(curso_id);
+        let campus = await Campus.findByPk(campus_id);
         if (!curso) {
             return res.status(400).json({ error: 'Curso não encontrado!' });
+        } else if (!campus) {
+                return res.status(400).json({ error: 'Campus não encontrado!' });
         } else if (!aluno) {
             aluno = await Aluno.create(req.body);
             return res.json(aluno)
